@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Huile d'Olive Algérienne Premium — Pitch Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0e130e;
+      --bg2:       #141a13;
+      --bg3:       #192019;
+      --gold:      #c9a84c;
+      --gold-light:#e2c97e;
+      --cream:     #f2ebe0;
+      --cream-dim: #b8b0a0;
+      --olive:     #3d5c35;
+      --olive-mid: #2a3f24;
+      --white:     #ffffff;
+      --serif:     'Playfair Display', Georgia, serif;
+      --sans:      'DM Sans', system-ui, sans-serif;
+      --gap:       clamp(4rem, 10vw, 9rem);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--cream);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--gold); color: var(--bg); }
+
+    /* ── Typography ───────────────────────────────────────────── */
+    h1, h2, h3, h4 { font-family: var(--serif); line-height: 1.15; }
+    h1 { font-size: clamp(3rem, 8vw, 7rem); font-weight: 700; }
+    h2 { font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 600; }
+    h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 600; }
+    h4 { font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; }
+    p  { font-size: clamp(.9rem, 1.2vw, 1.05rem); color: var(--cream-dim); }
+    strong { color: var(--cream); font-weight: 600; }
+    a  { color: var(--gold); text-decoration: none; }
+
+    /* ── Utilities ────────────────────────────────────────────── */
+    .gold       { color: var(--gold); }
+    .italic     { font-style: italic; }
+    .tag {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 100px;
+      padding: .3em 1em;
+      margin-bottom: 1.4rem;
+    }
+    .divider {
+      width: 3rem; height: 2px;
+      background: var(--gold);
+      margin: 1.6rem 0 2rem;
+    }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 clamp(1.2rem, 5vw, 3rem); }
+    section { padding: var(--gap) 0; }
+
+    /* ── Scroll reveal ────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity .75s ease, transform .75s ease; }
+    .reveal-left.show  { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity .75s ease, transform .75s ease; }
+    .reveal-right.show { opacity: 1; transform: translateX(0); }
+    .delay-1 { transition-delay: .1s; }
+    .delay-2 { transition-delay: .2s; }
+    .delay-3 { transition-delay: .3s; }
+    .delay-4 { transition-delay: .4s; }
+
+    /* ── NAV ──────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem clamp(1.2rem, 5vw, 3rem);
+      transition: background .4s ease, backdrop-filter .4s ease;
+    }
+    nav.scrolled {
+      background: rgba(14,19,14,.85);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(201,168,76,.12);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: .04em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      transition: color .25s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    @media (max-width: 680px) { .nav-links { display: none; } }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 6rem clamp(1.2rem, 5vw, 3rem) 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Animated gradient background */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(61,92,53,.35) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 80% at 20% 70%, rgba(201,168,76,.08) 0%, transparent 60%);
+      animation: pulse 8s ease-in-out infinite alternate;
+    }
+    @keyframes pulse {
+      from { opacity: .7; }
+      to   { opacity: 1; }
+    }
+    /* Big decorative circle */
+    #hero::after {
+      content: '';
+      position: absolute;
+      width: 650px; height: 650px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,.1);
+      right: -180px; top: 50%;
+      transform: translateY(-50%);
+    }
+    .hero-inner { position: relative; max-width: 820px; }
+    .hero-eyebrow {
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 2rem; height: 1px;
+      background: var(--gold);
+    }
+    .hero-title { margin-bottom: 1.8rem; }
+    .hero-title span { color: var(--gold); }
+    .hero-title em { font-style: italic; color: var(--cream-dim); }
+    .hero-sub {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      color: var(--cream-dim);
+      max-width: 560px;
+      margin-bottom: 3rem;
+      line-height: 1.75;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      background: var(--gold);
+      color: var(--bg);
+      font-family: var(--sans);
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      transition: background .25s, transform .2s;
+    }
+    .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .hero-cta svg { width: 16px; height: 16px; }
+    .hero-stats {
+      display: flex;
+      gap: clamp(1.5rem, 4vw, 4rem);
+      margin-top: 5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(201,168,76,.18);
+      flex-wrap: wrap;
+    }
+    .hero-stat-value {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--gold);
+    }
+    .hero-stat-label {
+      font-size: .75rem;
+      color: var(--cream-dim);
+      letter-spacing: .06em;
+      margin-top: .2rem;
+    }
+
+    /* ── SECTION STYLES ───────────────────────────────────────── */
+    .section-label {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .section-title { margin-bottom: 1rem; }
+    .section-body  { max-width: 640px; }
+
+    /* ── PROBLEM ──────────────────────────────────────────────── */
+    #probleme { background: var(--bg2); }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem 6rem;
+      align-items: start;
+    }
+    @media (max-width: 760px) { .problem-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+    .problem-points { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
+    .problem-point {
+      display: flex;
+      gap: 1rem;
+      padding: 1.4rem 1.6rem;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 12px;
+      transition: border-color .3s;
+    }
+    .problem-point:hover { border-color: rgba(201,168,76,.25); }
+    .problem-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: rgba(201,168,76,.12);
+      display: grid; place-items: center;
+      flex-shrink: 0;
+      font-size: .9rem;
+    }
+    .problem-point-text { font-size: .9rem; color: var(--cream-dim); line-height: 1.55; }
+    .problem-point-text strong { color: var(--cream); display: block; margin-bottom: .2rem; }
+
+    .callout {
+      padding: 2rem 2.2rem;
+      border-left: 3px solid var(--gold);
+      background: rgba(201,168,76,.06);
+      border-radius: 0 12px 12px 0;
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.6;
+      margin-top: 2rem;
+    }
+
+    /* ── MARKET STAT BAND ─────────────────────────────────────── */
+    .market-band {
+      background: linear-gradient(135deg, var(--olive-mid), var(--bg3));
+      border: 1px solid rgba(201,168,76,.15);
+      border-radius: 20px;
+      padding: 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem 4rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4rem;
+    }
+    .market-band-stat { text-align: center; }
+    .market-band-stat .val {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--gold);
+    }
+    .market-band-stat .lbl {
+      font-size: .78rem;
+      color: var(--cream-dim);
+      letter-spacing: .05em;
+      margin-top: .3rem;
+    }
+    .market-band-divider { width: 1px; height: 60px; background: rgba(255,255,255,.1); }
+    @media (max-width: 600px) { .market-band-divider { display: none; } }
+
+    /* ── OPPORTUNITE ──────────────────────────────────────────── */
+    #opportunite { background: var(--bg); }
+    .terroir-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .terroir-card {
+      padding: 2rem 1.8rem;
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px;
+      transition: transform .3s, border-color .3s;
+    }
+    .terroir-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,.3); }
+    .terroir-card .icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .terroir-card h4 { font-size: .75rem; letter-spacing: .14em; color: var(--gold); margin-bottom: .6rem; }
+    .terroir-card p { font-size: .88rem; }
+
+    .awards-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .award-badge {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      padding: .75rem 1.2rem;
+      border: 1px solid rgba(201,168,76,.3);
+      border-radius: 100px;
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--gold);
+    }
+    .award-badge::before { content: '🥇'; font-size: .9rem; }
+
+    /* ── SOLUTION ─────────────────────────────────────────────── */
+    #solution { background: var(--bg2); }
+    .solution-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem 7rem;
+      align-items: center;
+    }
+    @media (max-width: 760px) { .solution-split { grid-template-columns: 1fr; gap: 3rem; } }
+
+    .do-dont {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .do-dont-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .9rem;
+      font-size: .9rem;
+      color: var(--cream-dim);
+      line-height: 1.5;
+    }
+    .do-dot {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: grid; place-items: center;
+      font-size: .7rem;
+      font-weight: 700;
+      margin-top: .05rem;
+    }
+    .do-dot.yes { background: rgba(61,92,53,.5); color: #7ec87e; border: 1px solid #3d5c35; }
+    .do-dot.no  { background: rgba(180,60,60,.15); color: #e07070; border: 1px solid rgba(180,60,60,.3); }
+
+    /* ── PRODUCT ──────────────────────────────────────────────── */
+    #produit { background: var(--bg); }
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    @media (max-width: 800px) { .product-layout { grid-template-columns: 1fr; gap: 3rem; } }
+
+    /* CSS coffret illustration */
+    .coffret-visual {
+      aspect-ratio: 1;
+      max-width: 420px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .coffret-box {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #1e2b1a, #0e1a0e);
+      border-radius: 20px;
+      border: 1px solid rgba(201,168,76,.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .coffret-box::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,.08) 0%, transparent 60%);
+    }
+    .bottles-row {
+      display: flex;
+      gap: 1.8rem;
+      align-items: flex-end;
+      position: relative;
+      z-index: 1;
+    }
+    .bottle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+    }
+    .bottle-svg {
+      width: 50px;
+      filter: drop-shadow(0 8px 20px rgba(201,168,76,.15));
+      transition: transform .4s ease;
+    }
+    .bottle:hover .bottle-svg { transform: translateY(-6px); }
+    .bottle-label {
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+    }
+    .coffret-tag-row {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .ctag {
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .3em .9em;
+      border-radius: 100px;
+      border: 1px solid rgba(201,168,76,.35);
+      color: var(--gold-light);
+    }
+    .coffret-price {
+      position: absolute;
+      top: 1.4rem; right: 1.8rem;
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .product-details { display: flex; flex-direction: column; gap: 1.2rem; }
+    .product-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .9rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      font-size: .9rem;
+      gap: 1rem;
+    }
+    .product-row:last-child { border-bottom: none; }
+    .product-row-label { color: var(--cream-dim); }
+    .product-row-value { font-weight: 500; color: var(--cream); text-align: right; }
+
+    /* ── DIFF ─────────────────────────────────────────────────── */
+    #diff { background: var(--bg2); }
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .diff-card {
+      padding: 2.2rem;
+      background: var(--bg);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px;
+      transition: transform .3s, border-color .3s;
+    }
+    .diff-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,.25); }
+    .diff-num {
+      font-family: var(--serif);
+      font-size: 3rem;
+      color: rgba(201,168,76,.2);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .diff-card h3 { font-size: 1.1rem; margin-bottom: .7rem; }
+    .diff-card p  { font-size: .87rem; }
+
+    /* ── MARCHE ───────────────────────────────────────────────── */
+    #marche { background: var(--bg); }
+    .channels-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2.5rem;
+      font-size: .9rem;
+    }
+    .channels-table thead th {
+      text-align: left;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: .8rem 1.2rem;
+      border-bottom: 1px solid rgba(201,168,76,.2);
+    }
+    .channels-table tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      transition: background .2s;
+    }
+    .channels-table tbody tr:hover { background: rgba(255,255,255,.03); }
+    .channels-table td {
+      padding: 1rem 1.2rem;
+      color: var(--cream-dim);
+      vertical-align: top;
+    }
+    .channels-table td:first-child { color: var(--cream); font-weight: 500; }
+    .priority-badge {
+      display: inline-block;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .2em .7em;
+      border-radius: 100px;
+      margin-left: .5rem;
+    }
+    .priority-badge.high { background: rgba(201,168,76,.2); color: var(--gold); }
+    .priority-badge.med  { background: rgba(255,255,255,.07); color: var(--cream-dim); }
+
+    /* ── BUSINESS MODEL ───────────────────────────────────────── */
+    #bmodel { background: var(--bg2); }
+    .bmodel-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem 6rem;
+      align-items: start;
+    }
+    @media (max-width: 760px) { .bmodel-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+    .cost-table { width: 100%; font-size: .88rem; margin-top: 1.5rem; }
+    .cost-row {
+      display: flex;
+      justify-content: space-between;
+      padding: .75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      gap: 1rem;
+    }
+    .cost-row:last-child { border-bottom: none; }
+    .cost-label { color: var(--cream-dim); }
+    .cost-val { font-weight: 500; color: var(--cream); white-space: nowrap; }
+    .cost-total {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0 0;
+      margin-top: .5rem;
+      border-top: 2px solid rgba(201,168,76,.3);
+      font-weight: 600;
+      color: var(--cream);
+    }
+    .cost-total .cost-val { color: var(--gold); }
+
+    .margin-bars { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem; }
+    .margin-item { }
+    .margin-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: .5rem;
+      font-size: .85rem;
+    }
+    .margin-label { color: var(--cream-dim); }
+    .margin-pct { font-weight: 600; color: var(--gold); }
+    .margin-bar-bg {
+      height: 8px;
+      background: rgba(255,255,255,.06);
+      border-radius: 100px;
+    }
+    .margin-bar-fill {
+      height: 8px;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      width: 0;
+      transition: width 1.2s ease .3s;
+    }
+
+    /* ── LEVÉE ────────────────────────────────────────────────── */
+    #levee { background: var(--bg); }
+    .levee-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem 6rem;
+    }
+    @media (max-width: 760px) { .levee-split { grid-template-columns: 1fr; gap: 3rem; } }
+
+    .budget-list { list-style: none; display: flex; flex-direction: column; gap: .9rem; margin-top: 1.5rem; }
+    .budget-item { display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: .88rem; padding: .7rem 0; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .budget-item:last-child { border-bottom: none; }
+    .budget-label { color: var(--cream-dim); }
+    .budget-val { font-weight: 600; color: var(--cream); white-space: nowrap; }
+
+    .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1.5rem; }
+    .kpi-card {
+      padding: 1.4rem;
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 12px;
+    }
+    .kpi-val { font-family: var(--serif); font-size: 1.5rem; color: var(--gold); }
+    .kpi-lbl { font-size: .75rem; color: var(--cream-dim); margin-top: .25rem; line-height: 1.4; }
+
+    /* ── EQUIPE ───────────────────────────────────────────────── */
+    #equipe { background: var(--bg2); }
+    .equipe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .equipe-card {
+      padding: 2rem;
+      background: var(--bg);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px;
+      transition: transform .3s, border-color .3s;
+    }
+    .equipe-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,.25); }
+    .equipe-avatar {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: var(--olive-mid);
+      border: 1px solid rgba(201,168,76,.2);
+      display: grid; place-items: center;
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+    }
+    .equipe-card h3 { font-size: 1rem; margin-bottom: .3rem; }
+    .equipe-card .role { font-size: .75rem; color: var(--gold); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .8rem; }
+    .equipe-card p { font-size: .83rem; }
+
+    /* ── QUALITE & LEGAL ──────────────────────────────────────── */
+    #qualite { background: var(--bg); }
+    .qualite-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+    @media (max-width: 680px) { .qualite-grid { grid-template-columns: 1fr; } }
+    .qualite-card {
+      padding: 2rem;
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px;
+    }
+    .qualite-card .q-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+    .qualite-card h3 { font-size: 1rem; margin-bottom: .7rem; }
+    .qualite-card ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .qualite-card ul li { font-size: .85rem; color: var(--cream-dim); padding-left: 1.1rem; position: relative; }
+    .qualite-card ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+
+    /* ── CONCLUSION ───────────────────────────────────────────── */
+    #conclusion {
+      background: linear-gradient(160deg, var(--olive-mid) 0%, var(--bg) 100%);
+      border-top: 1px solid rgba(201,168,76,.15);
+      text-align: center;
+    }
+    .conclusion-inner { max-width: 720px; margin: 0 auto; }
+    .conclusion-inner h2 { font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 1.5rem; }
+    .conclusion-inner p { font-size: 1.05rem; max-width: 580px; margin: 0 auto 2.5rem; }
+    .conclusion-pills { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; margin-bottom: 3.5rem; }
+    .pill {
+      padding: .55em 1.2em;
+      border-radius: 100px;
+      border: 1px solid rgba(201,168,76,.3);
+      font-size: .8rem;
+      font-weight: 500;
+      color: var(--cream-dim);
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 2.5rem clamp(1.2rem, 5vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo { font-family: var(--serif); font-style: italic; color: var(--gold); }
+    .footer-note { font-size: .75rem; color: var(--cream-dim); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Huile d'Olive Algérienne</div>
+  <ul class="nav-links">
+    <li><a href="#probleme">Problème</a></li>
+    <li><a href="#opportunite">Opportunité</a></li>
+    <li><a href="#produit">Produit</a></li>
+    <li><a href="#bmodel">Modèle</a></li>
+    <li><a href="#levee">Levée</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Pitch Deck — Seed / Friends & Partners</div>
+    <h1 class="hero-title reveal">
+      L'or vert<br />
+      <em>du Maghreb,</em><br />
+      <span>enfin en premium.</span>
+    </h1>
+    <p class="hero-sub reveal delay-1">
+      Un label curateur qui sélectionne, raconte et commercialise les meilleures huiles d'olive algériennes — déjà médaillées internationalement — sur le marché premium européen.
+    </p>
+    <a href="#probleme" class="hero-cta reveal delay-2">
+      Découvrir le projet
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M8 3v10M3 8l5 5 5-5"/>
+      </svg>
+    </a>
+    <div class="hero-stats reveal delay-3">
+      <div>
+        <div class="hero-stat-value">1,3 Md€</div>
+        <div class="hero-stat-label">Marché cadeau d'entreprise France</div>
+      </div>
+      <div>
+        <div class="hero-stat-value">65–85 €</div>
+        <div class="hero-stat-label">Panier coffret cible</div>
+      </div>
+      <div>
+        <div class="hero-stat-value">0</div>
+        <div class="hero-stat-label">Marque algérienne premium en Europe</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLÈME -->
+<section id="probleme">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="reveal-left">
+        <div class="section-label">01 — Le problème</div>
+        <h2 class="section-title">La qualité <span class="gold italic">existe.</span><br />La marque, non.</h2>
+        <div class="divider"></div>
+        <p>L'huile d'olive algérienne est reconnue par des jurys internationaux indépendants — BIOL Rome, Genève, Abu Dhabi. Pourtant, elle reste absente du segment premium en Europe.</p>
+        <div class="callout">
+          "Ce n'est pas un problème de qualité. C'est un déficit structurel de marque, de distribution et de storytelling."
+        </div>
+      </div>
+      <div class="reveal-right">
+        <ul class="problem-points">
+          <li class="problem-point">
+            <div class="problem-icon">🏷</div>
+            <div class="problem-point-text">
+              <strong>Absence de marque</strong>
+              Aucun acteur ne joue le rôle de curateur premium pour ce terroir en Europe.
+            </div>
+          </li>
+          <li class="problem-point">
+            <div class="problem-icon">📦</div>
+            <div class="problem-point-text">
+              <strong>Manque de distribution</strong>
+              Les producteurs algériens n'ont ni les réseaux, ni les codes du marché premium européen.
+            </div>
+          </li>
+          <li class="problem-point">
+            <div class="problem-icon">📖</div>
+            <div class="problem-point-text">
+              <strong>Déficit de storytelling</strong>
+              Le produit n'est pas mis en récit pour le consommateur haut de gamme.
+            </div>
+          </li>
+          <li class="problem-point">
+            <div class="problem-icon">💼</div>
+            <div class="problem-point-text">
+              <strong>Un marché qui attend</strong>
+              Le cadeau gourmet premium en France pèse 1,3 Md€/an — dominé par des marques italiennes et espagnoles.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="market-band reveal">
+      <div class="market-band-stat">
+        <div class="val">1,3 Md€</div>
+        <div class="lbl">Cadeau d'entreprise — France</div>
+      </div>
+      <div class="market-band-divider"></div>
+      <div class="market-band-stat">
+        <div class="val">+8 %</div>
+        <div class="lbl">Croissance annuelle du segment</div>
+      </div>
+      <div class="market-band-divider"></div>
+      <div class="market-band-stat">
+        <div class="val">Milliards €</div>
+        <div class="lbl">Épicerie fine premium Europe</div>
+      </div>
+      <div class="market-band-divider"></div>
+      <div class="market-band-stat">
+        <div class="val">0</div>
+        <div class="lbl">Marque algérienne dans cet espace</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPPORTUNITÉ -->
+<section id="opportunite">
+  <div class="container">
+    <div class="section-label reveal">02 — L'opportunité</div>
+    <h2 class="section-title reveal">Un terroir unique,<br /><span class="gold italic">encore vierge.</span></h2>
+    <div class="divider reveal"></div>
+    <p class="reveal" style="max-width:620px">
+      L'Algérie possède des conditions agro-climatiques exceptionnelles et des variétés endémiques absentes du marché premium européen. La fenêtre est ouverte.
+    </p>
+
+    <div class="terroir-grid">
+      <div class="terroir-card reveal delay-1">
+        <div class="icon">⛰</div>
+        <h4>Altitude</h4>
+        <p>Oliviers cultivés entre 400 et 1 200 m dans les massifs kabyles et aurésiens. Acidité naturellement faible, profil aromatique complexe.</p>
+      </div>
+      <div class="terroir-card reveal delay-2">
+        <div class="icon">🌍</div>
+        <h4>Sol</h4>
+        <p>Terres calcaires et argileuses, faibles rendements volontaires — concentration aromatique plus importante que les oliviers de plaine.</p>
+      </div>
+      <div class="terroir-card reveal delay-3">
+        <div class="icon">🫒</div>
+        <h4>Variétés endémiques</h4>
+        <p>Chemlal, Sigoise, Azeradj — cultivars quasi exclusifs à l'Algérie, absents du marché premium européen.</p>
+      </div>
+      <div class="terroir-card reveal delay-4">
+        <div class="icon">🏆</div>
+        <h4>Validation internationale</h4>
+        <p>Plusieurs producteurs algériens ont remporté des médailles d'or dans les compétitions mondiales de référence.</p>
+      </div>
+    </div>
+
+    <div class="awards-row reveal">
+      <div class="award-badge">BIOL — Rome</div>
+      <div class="award-badge">Concours International — Genève</div>
+      <div class="award-badge">Abu Dhabi International</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="container">
+    <div class="solution-split">
+      <div class="reveal-left">
+        <div class="section-label">03 — La solution</div>
+        <h2 class="section-title">Curateur<br /><span class="gold italic">d'excellence,</span><br />pas producteur.</h2>
+        <div class="divider"></div>
+        <p>Une marque ombrelle premium qui sélectionne, raconte et commercialise — sans produire une seule goutte d'huile.</p>
+      </div>
+      <div class="reveal-right">
+        <div class="do-dont">
+          <div class="do-dont-item">
+            <div class="do-dot yes">✓</div>
+            Sélectionner uniquement des huiles déjà médaillées par des jurys indépendants
+          </div>
+          <div class="do-dont-item">
+            <div class="do-dot yes">✓</div>
+            Construire des relations contractuelles avec les producteurs (volumes, cahier des charges, exclusivité Europe)
+          </div>
+          <div class="do-dont-item">
+            <div class="do-dot yes">✓</div>
+            Valoriser le producteur dans le récit — sous la marque ombrelle, qui porte la promesse
+          </div>
+          <div class="do-dont-item">
+            <div class="do-dot yes">✓</div>
+            Commercialiser en coffrets premium avec narration terroir et traçabilité complète
+          </div>
+          <div class="do-dont-item">
+            <div class="do-dot no">✗</div>
+            Pas de production agricole — zéro risque récolte / météo / foncier
+          </div>
+          <div class="do-dont-item">
+            <div class="do-dot no">✗</div>
+            Pas de marque blanche, pas de folklore, pas de générique food
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUIT -->
+<section id="produit">
+  <div class="container">
+    <div class="product-layout">
+      <!-- Visual -->
+      <div class="reveal-left">
+        <div class="coffret-visual">
+          <div class="coffret-box">
+            <div class="coffret-price">65–85 €</div>
+            <div class="bottles-row">
+              <!-- Bottle 1 -->
+              <div class="bottle">
+                <svg class="bottle-svg" viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="14" y="0" width="12" height="8" rx="2" fill="#c9a84c"/>
+                  <path d="M13 8 C8 18 6 28 6 38 L6 88 C6 93 10 96 20 96 C30 96 34 93 34 88 L34 38 C34 28 32 18 27 8 Z" fill="#1e3520" stroke="#3d5c35" stroke-width="1"/>
+                  <rect x="10" y="52" width="20" height="18" rx="2" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.4)" stroke-width="0.5"/>
+                  <text x="20" y="63" font-size="4" fill="#c9a84c" text-anchor="middle" font-family="serif">CHEMLAL</text>
+                </svg>
+                <div class="bottle-label">Kabylie</div>
+              </div>
+              <!-- Bottle 2 (taller) -->
+              <div class="bottle">
+                <svg class="bottle-svg" viewBox="0 0 40 110" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:58px">
+                  <rect x="14" y="0" width="12" height="8" rx="2" fill="#c9a84c"/>
+                  <path d="M13 8 C8 18 6 28 6 40 L6 96 C6 102 10 106 20 106 C30 106 34 102 34 96 L34 40 C34 28 32 18 27 8 Z" fill="#162b13" stroke="#3d5c35" stroke-width="1"/>
+                  <rect x="9" y="58" width="22" height="20" rx="2" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.4)" stroke-width="0.5"/>
+                  <text x="20" y="70" font-size="3.8" fill="#c9a84c" text-anchor="middle" font-family="serif">SIGOISE</text>
+                  <circle cx="30" cy="50" r="4" fill="rgba(201,168,76,0.8)" stroke="none"/>
+                  <text x="30" y="52.5" font-size="4" fill="#0e130e" text-anchor="middle" font-weight="bold">★</text>
+                </svg>
+                <div class="bottle-label">Aurès</div>
+              </div>
+              <!-- Bottle 3 -->
+              <div class="bottle">
+                <svg class="bottle-svg" viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="14" y="0" width="12" height="8" rx="2" fill="#c9a84c"/>
+                  <path d="M13 8 C8 18 6 28 6 38 L6 88 C6 93 10 96 20 96 C30 96 34 93 34 88 L34 38 C34 28 32 18 27 8 Z" fill="#1a3018" stroke="#3d5c35" stroke-width="1"/>
+                  <rect x="10" y="52" width="20" height="18" rx="2" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.4)" stroke-width="0.5"/>
+                  <text x="20" y="63" font-size="3.5" fill="#c9a84c" text-anchor="middle" font-family="serif">AZERADJ</text>
+                </svg>
+                <div class="bottle-label">Sétif</div>
+              </div>
+            </div>
+            <div class="coffret-tag-row">
+              <span class="ctag">3 Médailles</span>
+              <span class="ctag">3 Terroirs</span>
+              <span class="ctag">Millésimé</span>
+              <span class="ctag">Traçabilité</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Details -->
+      <div class="reveal-right">
+        <div class="section-label">04 — Le produit</div>
+        <h2 class="section-title">Coffret<br /><span class="gold italic">dégustation</span><br />premium</h2>
+        <div class="divider"></div>
+        <div class="product-details">
+          <div class="product-row">
+            <span class="product-row-label">Contenu</span>
+            <span class="product-row-value">3 × 100–200 ml, extra-vierge médaillée</span>
+          </div>
+          <div class="product-row">
+            <span class="product-row-label">Sélection</span>
+            <span class="product-row-value">3 producteurs · 3 terroirs · 1 médaille / huile</span>
+          </div>
+          <div class="product-row">
+            <span class="product-row-label">Packaging</span>
+            <span class="product-row-value">Boîte rigide, finition mat + dorure à chaud</span>
+          </div>
+          <div class="product-row">
+            <span class="product-row-label">Contenu éditorial</span>
+            <span class="product-row-value">Carte terroir, guide dégustation, QR traçabilité</span>
+          </div>
+          <div class="product-row">
+            <span class="product-row-label">Personnalisation</span>
+            <span class="product-row-value">Note manuscrite pour commandes B2B</span>
+          </div>
+          <div class="product-row">
+            <span class="product-row-label">Prix public cible</span>
+            <span class="product-row-value" style="color:var(--gold);font-size:1.1rem">65 – 85 €</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFÉRENCIATION -->
+<section id="diff">
+  <div class="container">
+    <div class="section-label reveal">05 — Différenciation</div>
+    <h2 class="section-title reveal">Pourquoi <span class="gold italic">nous</span> ?</h2>
+    <div class="divider reveal"></div>
+    <div class="diff-grid">
+      <div class="diff-card reveal delay-1">
+        <div class="diff-num">01</div>
+        <h3>Qualité validée par tiers</h3>
+        <p>Les médailles sont attribuées par des jurys indépendants en compétition directe avec l'Italie, l'Espagne et la Grèce. Ce n'est pas une autocertification.</p>
+      </div>
+      <div class="diff-card reveal delay-2">
+        <div class="diff-num">02</div>
+        <h3>Origine : un actif rare</h3>
+        <p>Aucune marque premium ne positionne l'Algérie en Europe aujourd'hui. La fenêtre est ouverte. La crédibilité est portée par les médailles, pas par l'histoire marketing.</p>
+      </div>
+      <div class="diff-card reveal delay-3">
+        <div class="diff-num">03</div>
+        <h3>Modèle curatorial</h3>
+        <p>Faible risque produit : pas de production, pas de risque agricole. La validation du produit précède la marque — les médailles existent avant nous.</p>
+      </div>
+      <div class="diff-card reveal delay-4">
+        <div class="diff-num">04</div>
+        <h3>Positionnement sans folklore</h3>
+        <p>Ni exotisme mal assumé, ni DNVB food générique. Sobriété, expertise, sélection — les codes du luxe alimentaire. Un territoire vierge à occuper.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCHÉ & CANAUX -->
+<section id="marche">
+  <div class="container">
+    <div class="section-label reveal">06 — Marché & canaux</div>
+    <h2 class="section-title reveal">Où et comment<br /><span class="gold italic">vendre ?</span></h2>
+    <div class="divider reveal"></div>
+
+    <div class="reveal" style="overflow-x:auto">
+      <table class="channels-table">
+        <thead>
+          <tr>
+            <th>Canal</th>
+            <th>Pourquoi</th>
+            <th>Modèle économique</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cadeaux d'entreprise B2B <span class="priority-badge high">Priorité 1</span></td>
+            <td>Cash rapide, commandes en volume, marges préservées, acquisition par réseau</td>
+            <td>Vente directe, personnalisation possible, commandes fermes</td>
+          </tr>
+          <tr>
+            <td>D2C — site propre <span class="priority-badge high">Priorité 1</span></td>
+            <td>Marge maximale, contrôle image, CRM, réachat direct</td>
+            <td>E-commerce direct, 65–85 € prix public</td>
+          </tr>
+          <tr>
+            <td>Épiceries fines <span class="priority-badge med">Priorité 2</span></td>
+            <td>Légitimité produit, clientèle premium captive, vitrine physique</td>
+            <td>Dépôt-vente ou achat ferme selon enseigne (marge distrib. 25–35 %)</td>
+          </tr>
+          <tr>
+            <td>Concept stores lifestyle <span class="priority-badge med">Priorité 2</span></td>
+            <td>Visibilité affinitaire, clientèle curieuse et premium</td>
+            <td>Consignation, sélection courte, rotation contrôlée</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2.5rem">
+      Géographie pilote : <strong>France</strong> (Paris + villes gastronomiques). Extension <strong>Benelux / Suisse</strong> en année 2 selon traction.
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS MODEL -->
+<section id="bmodel">
+  <div class="container">
+    <div class="bmodel-grid">
+      <div class="reveal-left">
+        <div class="section-label">07 — Business model</div>
+        <h2 class="section-title">Les chiffres<br /><span class="gold italic">honnêtes.</span></h2>
+        <div class="divider"></div>
+        <p style="margin-bottom:1.5rem">Coût de revient estimé — coffret 3 huiles, prix public 65 €</p>
+        <div class="cost-table">
+          <div class="cost-row"><span class="cost-label">Achat huile (3 × 100–200 ml médaillée)</span><span class="cost-val">8–12 €</span></div>
+          <div class="cost-row"><span class="cost-label">Packaging (boîte, insert, cartes, finitions)</span><span class="cost-val">10–15 €</span></div>
+          <div class="cost-row"><span class="cost-label">Logistique & stockage</span><span class="cost-val">3–5 €</span></div>
+          <div class="cost-row"><span class="cost-label">Douane & conformité import UE</span><span class="cost-val">2–4 €</span></div>
+          <div class="cost-total"><span>Total coût de revient</span><span class="cost-val">23–36 €</span></div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <h3 style="margin-bottom:.5rem;margin-top:3.5rem">Marge brute estimée par canal</h3>
+        <p style="font-size:.82rem;margin-bottom:1.5rem">Dépend du mix canal. Sera précisée après devis packaging définitif.</p>
+        <div class="margin-bars">
+          <div class="margin-item">
+            <div class="margin-header">
+              <span class="margin-label">D2C (vente directe à 65 €)</span>
+              <span class="margin-pct">45–55 %</span>
+            </div>
+            <div class="margin-bar-bg"><div class="margin-bar-fill" data-width="50"></div></div>
+          </div>
+          <div class="margin-item">
+            <div class="margin-header">
+              <span class="margin-label">Distribution (prix distrib. ~45 €)</span>
+              <span class="margin-pct">25–45 %</span>
+            </div>
+            <div class="margin-bar-bg"><div class="margin-bar-fill" data-width="35"></div></div>
+          </div>
+          <div class="margin-item">
+            <div class="margin-header">
+              <span class="margin-label">B2B corporate (volumes)</span>
+              <span class="margin-pct">35–50 %</span>
+            </div>
+            <div class="margin-bar-bg"><div class="margin-bar-fill" data-width="42"></div></div>
+          </div>
+        </div>
+        <div class="callout" style="margin-top:2rem;font-size:.9rem">
+          CAPEX maîtrisé : pas d'investissement industriel, pas de foncier. L'essentiel du budget va au stock, au packaging et à l'acquisition distribution.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEVÉE -->
+<section id="levee">
+  <div class="container">
+    <div class="section-label reveal">08 — Levée de fonds</div>
+    <h2 class="section-title reveal"><span class="gold italic">50 000 – 80 000 €</span><br />pour valider le modèle.</h2>
+    <div class="divider reveal"></div>
+
+    <div class="levee-split">
+      <div class="reveal-left">
+        <h3 style="margin-bottom:.5rem">Usage des fonds</h3>
+        <p style="font-size:.85rem;margin-bottom:.5rem">Seed / Friends & Partners</p>
+        <ul class="budget-list">
+          <li class="budget-item"><span class="budget-label">Production & stock pilote (200 coffrets)</span><span class="budget-val">~12 000 €</span></li>
+          <li class="budget-item"><span class="budget-label">Packaging & identité visuelle</span><span class="budget-val">~10 000 €</span></li>
+          <li class="budget-item"><span class="budget-label">Logistique, import, douane</span><span class="budget-val">~6 000 €</span></li>
+          <li class="budget-item"><span class="budget-label">Site web + CRM</span><span class="budget-val">~5 000 €</span></li>
+          <li class="budget-item"><span class="budget-label">Actions commerciales B2B</span><span class="budget-val">~8 000 €</span></li>
+          <li class="budget-item"><span class="budget-label">Presse, samples chefs & critiques</span><span class="budget-val">~4 000 €</span></li>
+          <li class="budget-item"><span class="budget-label">Trésorerie & imprévus</span><span class="budget-val">~5–35 000 €</span></li>
+        </ul>
+      </div>
+      <div class="reveal-right">
+        <h3 style="margin-bottom:.5rem">KPIs — 12 mois</h3>
+        <p style="font-size:.85rem;margin-bottom:1rem">Objectifs mesurables, pas de promesses.</p>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-val">300–500</div>
+            <div class="kpi-lbl">Coffrets vendus en an 1</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val">5–8</div>
+            <div class="kpi-lbl">Points de vente épicerie fine</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val">3–5</div>
+            <div class="kpi-lbl">Partenariats B2B corporate</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val">20–40 k€</div>
+            <div class="kpi-lbl">CA an 1 visé</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val">3–5</div>
+            <div class="kpi-lbl">Couvertures presse gastronomique</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val">Mois 3</div>
+            <div class="kpi-lbl">Début suivi taux de réachat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITÉ & LÉGAL -->
+<section id="qualite">
+  <div class="container">
+    <div class="section-label reveal">09 — Cadre légal & qualité</div>
+    <h2 class="section-title reveal">Un projet <span class="gold italic">solide</span><br />dans ses fondations.</h2>
+    <div class="divider reveal"></div>
+    <div class="qualite-grid">
+      <div class="qualite-card reveal delay-1">
+        <div class="q-icon">⚖️</div>
+        <h3>Structure juridique</h3>
+        <ul>
+          <li>SAS de droit français — adaptée à l'import, à la distribution et à la levée de fonds</li>
+          <li>SIREN, TVA intracommunautaire, compte professionnel dédié</li>
+          <li>Contrats producteurs : volumes, cahier des charges, exclusivité Europe</li>
+        </ul>
+      </div>
+      <div class="qualite-card reveal delay-2">
+        <div class="q-icon">🛃</div>
+        <h3>Conformité import UE</h3>
+        <ul>
+          <li>Certificats phytosanitaires + analyses physico-chimiques conformes règlement UE 2568/91</li>
+          <li>Étiquetage conforme (français, mentions légales, traçabilité lot)</li>
+          <li>Partenaire logistique habitué aux procédures douanières Algérie–France</li>
+        </ul>
+      </div>
+      <div class="qualite-card reveal delay-3">
+        <div class="q-icon">🔬</div>
+        <h3>Contrôle qualité dans le temps</h3>
+        <ul>
+          <li>Cahier des charges contractuel : critères physico-chimiques minimaux</li>
+          <li>Analyse à chaque réception — l'huile est testée avant intégration au stock</li>
+          <li>Millésime visible : si le niveau n'est pas tenu, la cuvée n'est pas sélectionnée</li>
+          <li>Clause de déréférencement contractuelle en cas de non-conformité répétée</li>
+        </ul>
+      </div>
+      <div class="qualite-card reveal delay-4">
+        <div class="q-icon">💛</div>
+        <h3>Fidélisation & ambassadeurs</h3>
+        <ul>
+          <li>Programme "Sélection Millésime" — avant-première récolte pour clients existants</li>
+          <li>Réduction réachat incluse dans le coffret</li>
+          <li>30–50 coffrets offerts au lancement : chefs étoilés, critiques, journalistes food</li>
+          <li>Présence sur 1–2 salons spécialisés en an 1</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÉQUIPE -->
+<section id="equipe">
+  <div class="container">
+    <div class="section-label reveal">10 — L'équipe</div>
+    <h2 class="section-title reveal">Opérationnelle,<br /><span class="gold italic">pas conceptuelle.</span></h2>
+    <div class="divider reveal"></div>
+    <div class="equipe-grid">
+      <div class="equipe-card reveal delay-1">
+        <div class="equipe-avatar">👤</div>
+        <h3>Fondateur</h3>
+        <div class="role">Stratégie & exécution</div>
+        <p>Structuration business, sourcing producteurs (présence terrain Algérie), partenariats distribution et B2B, pilotage global.</p>
+      </div>
+      <div class="equipe-card reveal delay-2">
+        <div class="equipe-avatar">💻</div>
+        <h3>Équipe digitale</h3>
+        <div class="role">Freelances spécialisés</div>
+        <p>Développeur web (e-commerce) + directeur artistique (identité visuelle, packaging). Prestataire acquisition SEO en phase 2.</p>
+      </div>
+      <div class="equipe-card reveal delay-3">
+        <div class="equipe-avatar">🚚</div>
+        <h3>Partenaire logistique</h3>
+        <div class="role">Import & distribution</div>
+        <p>Réception, contrôle qualité à l'arrivée, stockage température contrôlée, conditionnement des coffrets, expédition B2C et B2B. Spécialisé import agroalimentaire Méditerranée.</p>
+      </div>
+      <div class="equipe-card reveal delay-4">
+        <div class="equipe-avatar">🌟</div>
+        <h3>Réseau & conseil</h3>
+        <div class="role">Mise en marché</div>
+        <p>Contacts acheteurs épicerie fine, réseau presse gastronomique et chefs. Plan de relations presse et envois samples au lancement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section id="conclusion">
+  <div class="container">
+    <div class="conclusion-inner">
+      <div class="tag reveal">En conclusion</div>
+      <h2 class="reveal">
+        Un label premium exportable.<br />
+        <span class="gold italic">Construit sur du réel.</span>
+      </h2>
+      <div class="divider reveal" style="margin:1.6rem auto 2rem"></div>
+      <p class="reveal">
+        Ce n'est pas une marque food générique. C'est un label de curation premium, bâti sur des produits déjà validés par des jurys internationaux, avec un modèle à faible risque industriel et une vision de marque défendable sur le long terme.
+      </p>
+      <div class="conclusion-pills reveal">
+        <span class="pill">Qualité prouvée</span>
+        <span class="pill">Marché identifié</span>
+        <span class="pill">Modèle sans production</span>
+        <span class="pill">CAPEX maîtrisé</span>
+        <span class="pill">Cadre légal propre</span>
+        <span class="pill">KPIs clairs</span>
+        <span class="pill">Équipe opérationnelle</span>
+      </div>
+      <a href="mailto:contact@example.com" class="hero-cta reveal">
+        Discutons du projet
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M2 8h12M8 2l6 6-6 6"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Huile d'Olive Algérienne Premium</div>
+  <div class="footer-note">Document confidentiel — Usage investisseurs uniquement</div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('show');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Animate margin bars when they come into view
+  const bars = document.querySelectorAll('.margin-bar-fill');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.dataset.width + '%';
+        barObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  bars.forEach(b => barObserver.observe(b));
+</script>
+</body>
+</html>
